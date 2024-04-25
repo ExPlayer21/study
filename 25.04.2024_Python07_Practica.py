@@ -8,6 +8,7 @@ exmpldt = [['ID','1','Иванов Иван Иванович'], ['ID','2','Пе�
 for row in exmpldt:
     exmplwrtr.writerow(row)
 exmplfile.close() #закрываем файл
+print('Файл успешно создан')
             
             
             
