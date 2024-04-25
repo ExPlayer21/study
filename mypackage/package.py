@@ -1,5 +1,3 @@
-__all__ = [add, multiply, subtract, divide]
-
 def add(x,y):
     return x+y
 
