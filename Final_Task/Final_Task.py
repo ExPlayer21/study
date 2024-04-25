@@ -35,5 +35,5 @@ for ip in subnet.hosts():
     ws.append([ip_str, host])
 
 # Сохраняем результаты в файл
-wb.save("network_scan_results.xlsx")
+wb.save("Scan_Results.xlsx")
 wb.close()
