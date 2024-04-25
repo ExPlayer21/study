@@ -1,4 +1,4 @@
-from package import *
+from mypackage import *
 
 print (add(3,5))
 print (subtract(5,3))

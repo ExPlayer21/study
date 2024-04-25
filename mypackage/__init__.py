@@ -1,1 +1,1 @@
-from calc import *
+from .package import *
