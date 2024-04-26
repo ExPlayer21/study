@@ -8,32 +8,23 @@ def get_host(ip):
         host = socket.gethostbyaddr(ip)
         return host[0]
     except socket.herror:
-        return "Неизвестно"
-
-# Функция для получения маски подсети
-def get_subnet_mask():
-    ip = socket.gethostbyname(socket.gethostname())
-    subnet_mask = sum([bin(int(x)).count('1') for x in socket.gethostbyname_ex(socket.gethostname())[2][0].split('.')])
-    return f"{ip}/{subnet_mask}"
-
-# Получаем маску подсети
-subnet_mask = get_subnet_mask()
+        return "Unknown"
 
 # Создаем новую книгу Excel
 wb = Workbook()
 ws = wb.active
-ws.append(["IP адрес", "Имя ПК"])
+ws.append(["IP Address", "Host Name"])
 
-# Получаем локальный IP адрес и добавляем маску подсети
+# Получаем локальный IP адрес и маску подсети
 local_ip = socket.gethostbyname(socket.gethostname())
-subnet = ipaddress.ip_network(subnet_mask, strict=False)
+subnet = ipaddress.ip_network(local_ip + "/24", strict=False)
 
 # Сканируем диапазон IP адресов и сохраняем результаты в Excel
-for ip in subnet.hosts():   
+for ip in subnet.hosts():
     ip_str = str(ip)
     host = get_host(ip_str)
     ws.append([ip_str, host])
 
 # Сохраняем результаты в файл
-wb.save("Scan_Results.xlsx")
+wb.save("Scan_results.xlsx")
 wb.close()
